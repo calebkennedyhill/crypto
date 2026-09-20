@@ -1,2 +1,2 @@
 # crypto
-Learning cryptography
+Jeremy Juybari and Caleb Hill learn number theory and cryptography. We'll see where this goes...
