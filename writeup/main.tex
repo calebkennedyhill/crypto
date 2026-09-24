@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{color}
+\newcommand{\red}[1]{ {\color{red}{#1}} }
+\newcommand{\blue}[1]{ {\color{blue}{#1}} }
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\theoremstyle{plain}
+    \newtheorem{definition}{Definition}
+    \newtheorem{example}{Example}
+    \newtheorem{proposition}{Proposition}
+
+\title{Writeup}
+\author{Caleb and Jeremy}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\section{Language}
+
+
+\subsection{Introduction}
+
+The goal of this section is to characterize when the function defined by
+\[ 
+    \Z/n\Z \xrightarrow[x \mapsto ax+b]{} Z/n\Z
+\]
+is invertible.
+That will give conditions for an \textit{affine cipher} to be a valid encryption method.
+
+To do this we will need some basic number theory, and the following correspondence
+between English letters and integers:
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+    A & B & C & $\cdots$ & Y & Z  \\ \hline
+    0 & 1 & 2 & $\cdots$ & 24 & 25
+\end{tabular}
+\end{center}
+
+
+\subsection{Basic Number Theory}
+
+The symbol $\Z$ denotes the set
+\[
+    \{ \dots, -2, -1, 0, 1, 2, \dots\}
+\]
+of \textbf{integers} or \textbf{whole numbers}.
+
+\begin{definition}
+    Let $n$ be a positive integer.
+    Define $\Z/n\Z$ to be the set 
+    \[
+        \{ [0], [1], \dots, [n-1] \}.
+    \]
+    Sometimes, instead of writing $[k]$ we will write $k\pmod{n}$
+    or simply $k$ if there is no confusion.
+\end{definition}
+
+In some sense, we can think of $\Z/n\Z$ as a collection of all possible 
+remainders upon division by $n$.
+This idea is illustrated in the following fact.
+
+\begin{proposition}[Division]
+    Let $a,n \in \Z$ be two positive integers.
+    There is exactly one pair $q,r\in\Z$ of positive integers satisfying 
+    \begin{enumerate}
+        \item $a = qn+r$,
+        \item $0\leq r < n$.
+    \end{enumerate}
+\end{proposition}
+
+\blue{
+\begin{proof}
+    To do.
+\end{proof}
+}
+
+In the case when $r=0$, we say $n|a$, pronounces \textbf{$n$ divides $a$}.\footnote{
+    The symbol $|$ has an alternative pronunciation: ``guzinta.''
+As in, ``$n$ guzinta $a$,'' or, ``$n$ goes into $a$.''}
+We refer to $r$ as the remainder upon division by $n$, or 
+the \textbf{residue of $a$ modulo $n$}.
+We express this by writing $a \equiv r \pmod{n}$.
+
+Two integers may have the same residue modulo $n$.
+If $a \equiv r \pmod{n}$, then $a+n \equiv r \pmod{n}$ since 
+\[ 
+    a+n = (q+1)n + r.
+\] 
+A similar calculation shows that
+\[
+    r \equiv a+2n \equiv a+3n \equiv \cdots \pmod{n}.
+\]
+Thus we think of $r$ as ``representing'' the family $a+kn$ of integers, where $k$
+ranges across all elements of $\Z$.
+
+
+
+
+
+
+
+
+\subsection{Caesar Ciphers and Affine Ciphers}
+
+We begin by considering 
+
+
+
+\end{document}
