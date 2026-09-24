@@ -1,4 +1,4 @@
-from main import euclid_gcd
+from calebmain import euclid_gcd
 
 def test_euclid_gcd():
     assert euclid_gcd(0,0) == 0
@@ -12,7 +12,7 @@ def test_euclid_gcd():
 
 
 
-from main import ext_gcd
+from calebmain import ext_gcd
 
 def test_ext_gcd():
     assert ext_gcd(0,0) == (0,0,0)
@@ -24,7 +24,7 @@ def test_ext_gcd():
 
 
 
-from main import crt
+from calebmain import crt
 
 def test_crt():
     assert crt([1,1],[2,3]) == (1, 6)
