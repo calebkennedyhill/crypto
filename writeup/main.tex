@@ -2,6 +2,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{mathtools}
 
 \usepackage{color}
 \newcommand{\red}[1]{ {\color{red}{#1}} }
@@ -25,12 +26,12 @@
 \begin{document}
 \maketitle
 
-\section{Language}
+\section{}
 
 
 \subsection{Introduction}
 
-The goal of this section is to characterize when the function defined by
+The goal of this section is to characterize the conditions under which the function defined by
 \[ 
     \Z/n\Z \xrightarrow[x \mapsto ax+b]{} Z/n\Z
 \]
@@ -46,8 +47,35 @@ between English letters and integers:
 \end{tabular}
 \end{center}
 
+To motivate our study, we first prove the following fact.
 
-\subsection{Basic Number Theory}
+\begin{proposition}
+    Let $a,b \in \Z$ and consider the function $f: \Z \to \Z$ defined by 
+    \[
+        f(x) \coloneqq ax + b.
+    \]
+    Then $f$ is invertible if and only if $a=\pm1$.
+\end{proposition}
+
+\blue{
+\begin{proof}
+    Suppose $g$ is the inverse of $f$ and $g(x) = cx + d$.....
+\end{proof}
+}
+
+What is special about $a=\pm1$?
+In this case, $a$ is what we call a \textbf{unit} of the ring $\Z$.
+We will work to characterize the units of the ring $\Z/n\Z$.
+To accomplish this we'll need to build a few ideas of number theory:
+\begin{itemize}
+    \item Greatest common divisor 
+    \item Relative Primality
+\end{itemize}
+
+
+
+
+\subsection{Residues}
 
 The symbol $\Z$ denotes the set
 \[
@@ -69,7 +97,7 @@ In some sense, we can think of $\Z/n\Z$ as a collection of all possible
 remainders upon division by $n$.
 This idea is illustrated in the following fact.
 
-\begin{proposition}[Division]
+\begin{proposition}[Division]\label{prop:div}
     Let $a,n \in \Z$ be two positive integers.
     There is exactly one pair $q,r\in\Z$ of positive integers satisfying 
     \begin{enumerate}
@@ -105,6 +133,71 @@ ranges across all elements of $\Z$.
 
 
 
+\begin{definition}[Algebraic operations of $\Z/n\Z$]
+    Let $[a], [b] \in \Z/n\Z$.
+    By Proposition~\ref{prop:div} we have the following two expressions:
+    \begin{enumerate}
+        \item $a+b = q_1 n + r_1$
+        \item $ab = q_2 n + r_2$
+    \end{enumerate}
+    where $0\leq r_1,r_2 < n$.
+    We define an additive and multiplicative operations on $\Z/n\Z$ by 
+    \[  
+        [a]+[b] \coloneq [r_1], \quad [a] \cdot [b] \coloneq [r_2].
+    \]
+\end{definition}
+
+These algebraic operations are much nicer than their definition might first suggest.
+
+\begin{proposition}[$\Z/n\Z$ is a ring]
+    Let $[a],[b],[c] \in \Z/n\Z$:
+    \begin{enumerate}
+        \item $[a]+[b] = [b]+[a]$
+        \item $([a]+[b]) + [c] = [a] + ([b]+[c])$
+        \item $[0]+[a] = [a] = [a]+[0]$
+        \item $\forall [a], \exists [b]; [a]+[b] = [0]$
+    \end{enumerate}
+
+    \begin{enumerate}
+        \item $[a]([b]+[c]) = [a][b] + [a][c]$
+        \item $([a]+[b])[c] = [a][c] + [b][c]$
+    \end{enumerate}
+\end{proposition}
+
+\blue{
+\begin{proof}
+    To do.
+\end{proof}
+}
+
+
+
+
+\subsection{Primes}
+
+Now we return to the idea of divisibility.
+\begin{definition}
+    Let $a,b \in \Z$ be positive integers.
+    If $a|b$ we say $b$ is a \textbf{multiple} of $a$, and that 
+    $a$ is a \textbf{divisor} of $b$.
+    Note that, for all integers $b$, we have $1|b$ and $b|b$.
+    A positive integer $p$ is called \textbf{prime} if $p$ has exactly 
+    two divisors: $1$ and $p$.
+    A non-prime integer is called \textbf{composite}.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -112,7 +205,21 @@ ranges across all elements of $\Z$.
 
 \subsection{Caesar Ciphers and Affine Ciphers}
 
-We begin by considering 
+We are now in a position to state the result alluded to at the outset.
+
+\begin{proposition}
+    The function $f: \Z/n\Z \to \Z/n\Z$ defined by 
+    \[
+        f(x) \coloneq ax + b
+    \]
+    is invertible if and only if $\gcd(a,n)=1$.
+\end{proposition}
+
+\blue{
+\begin{proof}
+    Todo.
+\end{proof}
+}
 
 
 
