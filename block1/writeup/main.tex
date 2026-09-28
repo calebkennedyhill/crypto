@@ -14,6 +14,10 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 
+\newcommand{\PP}{\mathbb{P}}
+
+\newcommand{\ess}{\mathcal{S}}
+
 \theoremstyle{plain}
     \newtheorem{definition}{Definition}
     \newtheorem{example}{Example}
@@ -59,13 +63,15 @@ To motivate our study, we first prove the following fact.
 
 \blue{
 \begin{proof}
-    Suppose $g$ is the inverse of $f$ and $g(x) = cx + d$.....
+    Suppose $g(x) = cx + d$ and that $g$ is the inverse of $f$.
+    That is, $f(g(x)) = x = g(f(x))$.....
 \end{proof}
 }
 
 What is special about $a=\pm1$?
 In this case, $a$ is what we call a \textbf{unit} of the ring $\Z$.
-We will work to characterize the units of the ring $\Z/n\Z$.
+We will work to characterize the units of the ring $\Z/n\Z$ 
+(and, while we're at it, define what a \textit{ring} even is).
 To accomplish this we'll need to build a few ideas of number theory:
 \begin{itemize}
     \item Greatest common divisor 
@@ -82,6 +88,7 @@ The symbol $\Z$ denotes the set
     \{ \dots, -2, -1, 0, 1, 2, \dots\}
 \]
 of \textbf{integers} or \textbf{whole numbers}.
+We define the set $\N$ of \textbf{natural numbers} to be the positive elements of $\Z$.
 
 \begin{definition}
     Let $n$ be a positive integer.
@@ -112,7 +119,7 @@ This idea is illustrated in the following fact.
 \end{proof}
 }
 
-In the case when $r=0$, we say $n|a$, pronounces \textbf{$n$ divides $a$}.\footnote{
+In the case when $r=0$, we say $n|a$, pronounced \textbf{$n$ divides $a$}.\footnote{
     The symbol $|$ has an alternative pronunciation: ``guzinta.''
 As in, ``$n$ guzinta $a$,'' or, ``$n$ goes into $a$.''}
 We refer to $r$ as the remainder upon division by $n$, or 
@@ -130,10 +137,14 @@ A similar calculation shows that
 \]
 Thus we think of $r$ as ``representing'' the family $a+kn$ of integers, where $k$
 ranges across all elements of $\Z$.
+Depending on circumstance, we might write any of 
+\[
+    [a], \quad [a+n], \quad [a+2n], \quad \dots
+\]
 
 
 
-\begin{definition}[Algebraic operations of $\Z/n\Z$]
+\begin{definition}[Modular arithmetic]
     Let $[a], [b] \in \Z/n\Z$.
     By Proposition~\ref{prop:div} we have the following two expressions:
     \begin{enumerate}
@@ -151,6 +162,8 @@ These algebraic operations are much nicer than their definition might first sugg
 
 \begin{proposition}[$\Z/n\Z$ is a ring]
     Let $[a],[b],[c] \in \Z/n\Z$:
+
+    (Additive)
     \begin{enumerate}
         \item $[a]+[b] = [b]+[a]$
         \item $([a]+[b]) + [c] = [a] + ([b]+[c])$
@@ -158,6 +171,7 @@ These algebraic operations are much nicer than their definition might first sugg
         \item $\forall [a], \exists [b]; [a]+[b] = [0]$
     \end{enumerate}
 
+    (Multipliucative)
     \begin{enumerate}
         \item $[a]([b]+[c]) = [a][b] + [a][c]$
         \item $([a]+[b])[c] = [a][c] + [b][c]$
@@ -169,6 +183,39 @@ These algebraic operations are much nicer than their definition might first sugg
     To do.
 \end{proof}
 }
+
+
+The operations defined above can be thought of as doing arithmetic on clocks of various sizes.
+
+\begin{example}[$12$-hour clock]
+    It is currently 11AM. 
+    What time will it be in 6 hours?
+    Well, $11+6 = 17$, and $17 = 1\cdot12 + 5$.
+    Thus it will be $[11]+[17] = [5]$ o'clock.\
+
+    This example may be extended to the very unreasonable case in which we give 
+    every hour of the day its own unique name (i.e., a 24-hour clock).
+    We're also doing modular arithmetic when we incorporate minutes, 
+    except with a modulus of 60 instead of 12.
+\end{example}
+
+
+
+
+\begin{example}
+    What is going on here?
+    Are these numbers special in any way?
+\begin{enumerate}
+    \item $n=13$: $[7]+[9]+[2] = [18] = [5]$
+    \item $n=13$: $[5]\cdot[6] = [30] = [4]$
+    \item $n=13$: $[3]+[10] = [13] = [0]$
+    
+    \item $n=24$: $[8]+[11]+[1] = [20]$
+    \item $n=24$: $[6]\cdot[4] = [24] = [0]$
+\end{enumerate}
+\end{example}
+
+
 
 
 
@@ -187,13 +234,60 @@ Now we return to the idea of divisibility.
 \end{definition}
 
 
+Here are a few useful facts about prime numbers.
+
+\begin{proposition}
+\begin{enumerate}
+    \item 
+    Every integer greater than 1 is either prime, or is divisible by a prime.
+
+    \item 
+    Let $a,b,p\in\Z$ with $p$ prime.
+    If $p|ab$ then either $p|a$ or $p|b$.
+
+    \item 
+    Let $a\in\Z$ be a positive integer.
+    Then we may decompose $a$ as a product of primes as 
+    \[
+        a = p_1^{e_1} p_2^{e_2} \cdot \cdots \cdot p_k^{e_k}
+    \]
+    for some primes $p_i$.
+    Moreover, this decomposition is unique, up to reordering.
+\end{enumerate}
+\end{proposition}
 
 
+To illustrate, we give a few examples.
+
+\begin{example}
+\begin{enumerate}
+    \item 13 is prime. So is 41.
+    \item We can write $75 = 3 \cdot 5^2$.
+    \item We can write $88 = 2^3 \cdot 11$.
+    \item We can write $2007720 = 2^3 \cdot 3^3 \cdot 5^1 \cdot 11^1 \cdot 13^2$.
+    \item We can write $2026 = 2 \cdot 1013$.
+\end{enumerate}
+\end{example}
 
 
+We might now define the \textit{greatest common divisor} (GCD) of two integers 
+to be the product of all primes (or powers of primes) dividing both integers.
+This would give $\gcd(2026, 88) = 2$, 
+it would give $\gcd(88, 20070020) = 2^3 \cdot 11 = 88$, et cetra.
+A less concrete definition would be \textit{the greatest poisitive integer dividing both}.
+But in order to hint at the mathematics underlying the algorithms we'll see shortly,
+we give an even more abstract definition.
+This, however, is not abstraction for abstraction's sake.
 
-
-
+\begin{definition}[GCD]
+    Let $a,b\in\Z$ be two positive integers.
+    Define the set $\ess_{a,b}$ by 
+    \[
+        \ess_{a,b} \coloneq \{ xa + by : x,y \in\Z \}.
+    \]
+    We define the \textbf{greatest common divisor} of $a$ and $b$ to be the 
+    smallest element of the set $\N \cap \ess_{a,b}$.
+\end{definition}
 
 
 
