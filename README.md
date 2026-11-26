@@ -26,3 +26,33 @@ CMD ["python", "-c", "print('Hello World')"]
 3) sudo docker run py-hello
 
 If you are looking for the image files, they are handled by docker and stored in /var/lib/conatinerd/
+
+## Docker data
+
+You need to make the data dir and sub dirs
+```bash
+mkdir -p ./trade/data/raw/
+mkdir -p ./trade/data/output/
+```
+
+```bash
+sudo docker build -f ./docker/Dockerfile.data -t downloader .
+
+```
+
+```bash
+sudo docker run -v "$(pwd)/trade/data/raw:/app/raw:rw" --rm downloader &
+
+```
+The first part is the host dir and the second part is the dir in the container
+& is so the shell is returned. You can see what container is running with sudo docker ps
+sudo docker images shows all of the built images. The --rm does not delete the image file rather
+just the container which you can think of as instance of the image file.
+
+```bash
+sudo docker run --rm -it downloader bash
+```
+if you want to poke around in the container. 
+
+There were some design choices that we could change. I had the dir in the container not match the dir on the host
+I'm not sure if this over complicates things or not. Additionally, uv is not fully being used in the caching. I think we install everything on the host and we can sync. I'm not sure. 

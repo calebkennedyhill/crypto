@@ -1,11 +1,29 @@
-FROM python:3.15-trixie
-WORKDIR /trade
-RUN useradd --create-home appuser # non root user in container
-USER appuser
+#FROM python:3.15-trixie
+# using uv
+FROM ghcr.io/astral-sh/uv:python3.15-trixie
+WORKDIR /app
 
-#CMD ["python", "print('hello')"]
-#ENV PORT=8080
-#EXPOSE 8080
-#ENTRYPOINT ["top", "-b"]
-CMD ["sleep", "10"]
+# Keeps Python from buffering stdout and stderr to avoid situations where
+# the application crashes without emitting any logs due to buffering.
+ENV PYTHONUNBUFFERED=1
+ARG UID=1000
+ARG GID=1000
+# we are setting the user as nonroot
+RUN groupadd --system --gid ${GID} nonroot \
+ && useradd --system --gid ${GID} --uid ${UID} --create-home nonroot
+
+
+# where to save the data, we will bind a specfic dir
+RUN mkdir -p /app/raw \
+ && chown nonroot:nonroot /app/raw
+
+COPY ./trade/src/download/pyproject.toml .
+RUN uv sync --no-install-project
+COPY ./trade/src/download/download.py .
+# use this to run our app
+USER nonroot
+# Place executables in the environment at the front of the path
+# need this so image knows to use uv
+ENV PATH="/app/.venv/bin:$PATH"
+CMD ["python", "download.py"]
 #CMD ["python", "-c", "print('Hello World')"]
