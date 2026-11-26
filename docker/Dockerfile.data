@@ -1,0 +1,11 @@
+FROM python:3.15-trixie
+WORKDIR /trade
+RUN useradd --create-home appuser # non root user in container
+USER appuser
+
+#CMD ["python", "print('hello')"]
+#ENV PORT=8080
+#EXPOSE 8080
+#ENTRYPOINT ["top", "-b"]
+CMD ["sleep", "10"]
+#CMD ["python", "-c", "print('Hello World')"]
