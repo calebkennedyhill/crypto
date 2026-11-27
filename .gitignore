@@ -2,3 +2,4 @@ block1/writeup/*
 !block1/writeup/main.tex
 .venv
 trade/data/
+trade/poetry.lock
