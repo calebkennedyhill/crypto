@@ -1,0 +1,21 @@
+[project]
+name = "trade"
+version = "0.1.0"
+description = "Trading bot."
+authors = [
+    {name = "Jeremy Juybari and Caleb Hill"}
+]
+requires-python = ">=3.15"
+dependencies = [
+    "yfinance (>=1.8.0,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "ipykernel (>=7.4.0,<8.0.0)"
+]
