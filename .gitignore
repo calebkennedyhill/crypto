@@ -8,6 +8,8 @@ block1/writeup/*
 .venv
 trade/data/
 trade/poetry.lock
+*.csv
+mynotes.txt
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
